@@ -1,0 +1,45 @@
+import java.util.Scanner;
+public class Quick_sort {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int arr[] = {40, 20, 80, 50, 30};
+        int n = 5;
+        Quick_sort(arr, 0, n - 1);
+        System.out.println("Sorted array:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        sc.close();
+    }
+    static void Quick_sort(int[] a, int lb, int ub) {
+        if (lb < ub) {
+            int loc = Partition(a, lb, ub);
+            Quick_sort(a, lb, loc - 1);
+            Quick_sort(a, loc + 1, ub);
+        }
+    }
+    static int Partition(int[] a, int lb, int ub) {
+        int Pivot = a[lb]; 
+        int start = lb;
+        int end = ub;
+        while (start < end) {
+            while (a[start] <= Pivot && start <= ub) { 
+                start++;
+            }
+            while (end > lb && a[end] > Pivot) {  
+                end--;
+            }
+            if (start < end) {
+                swap(a, start, end);
+            }
+        }
+        swap(a, lb, end);
+        return end;
+    }
+    static void swap(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+}
+    
